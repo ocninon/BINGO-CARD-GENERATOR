@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AION BINGO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="header">
+            <h1 class="glow-text">AION BINGO</h1>
+            <div id="card-info" class="card-info"></div>
+            <button id="new-game-btn" class="new-game-btn">New Game</button>
+        </header>
+
+        <main class="bingo-card">
+            <!-- Bingo Letters Header -->
+            <div class="bingo-header-row">
+                <div class="letter-cell">B</div>
+                <div class="letter-cell">I</div>
+                <div class="letter-cell">N</div>
+                <div class="letter-cell">G</div>
+                <div class="letter-cell">O</div>
+            </div>
+
+            <!-- Grid Container for Numbers -->
+            <div id="bingo-grid" class="bingo-grid">
+                <!-- Javascript will populate this -->
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>AI by <span class="author">Orlee Ninon</span></p>
+        </footer>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3>Start New Game?</h3>
+            <p>Your current progress will be lost.</p>
+            <div class="modal-actions">
+                <button id="modal-cancel-btn" class="modal-btn cancel">Cancel</button>
+                <button id="modal-confirm-btn" class="modal-btn confirm">Start New</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
