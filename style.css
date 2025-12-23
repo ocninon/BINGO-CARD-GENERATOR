@@ -25,6 +25,8 @@ body {
         radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 1) 0, transparent 50%);
     color: var(--text-color);
     height: 100vh;
+    height: 100dvh;
+    /* Dynamic viewport height for mobile browsers */
     width: 100vw;
     overflow: hidden;
     /* Full screen, no scroll if possible */
@@ -48,11 +50,14 @@ body {
 /* Header */
 .header {
     text-align: center;
-    padding-bottom: 2vh;
+    padding-bottom: 1vh;
+    /* Reduced padding */
+    flex-shrink: 0;
 }
 
 .header h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
+    /* Slightly smaller default */
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -61,22 +66,24 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    margin-bottom: 5px;
 }
 
 .card-info {
-    margin-top: 5px;
-    font-size: 0.9rem;
+    margin-top: 0;
+    font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.6);
     background: rgba(255, 255, 255, 0.05);
-    padding: 5px 15px;
+    padding: 4px 12px;
     border-radius: 20px;
     display: inline-block;
     border: 1px solid var(--border-color);
 }
 
 .new-game-btn {
-    margin-top: 15px;
-    padding: 10px 20px;
+    margin-top: 10px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
     background: rgba(255, 51, 51, 0.2);
     border: 1px solid var(--accent-color);
     color: var(--text-color);
@@ -102,25 +109,31 @@ body {
     justify-content: center;
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 15px;
+    border-radius: 15px;
+    /* Slightly smaller radius */
+    padding: 10px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     aspect-ratio: 5/6;
     /* Approximate ratio for a bingo card */
-    max-height: 75vh;
+    max-height: 70vh;
+    /* Reduced max height */
+    width: 100%;
+    max-width: 400px;
+    /* Constrain width on larger screens */
+    margin: 0 auto;
 }
 
 .bingo-header-row {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     text-align: center;
-    margin-bottom: 10px;
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 10px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 5px;
 }
 
 .letter-cell {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
     color: var(--accent-color);
     text-shadow: 0 0 10px var(--glow-color);
@@ -130,22 +143,24 @@ body {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    gap: 8px;
+    gap: 5px;
+    /* Reduced gap */
     flex-grow: 1;
 }
 
 .bingo-cell {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border-color);
-    border-radius: 10px;
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
     user-select: none;
+    padding: 0;
 }
 
 .bingo-cell:active {
@@ -164,18 +179,21 @@ body {
 
 /* Free Space */
 .bingo-cell.free-space {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #ffd700;
     text-transform: uppercase;
     font-weight: 700;
+    line-height: 1.1;
+    text-align: center;
 }
 
 /* Footer */
 .footer {
     text-align: center;
-    padding-top: 2vh;
-    font-size: 0.9rem;
+    padding-top: 1vh;
+    font-size: 0.8rem;
     opacity: 0.7;
+    flex-shrink: 0;
 }
 
 .author {
@@ -195,20 +213,96 @@ body {
 
 /* Mobile Tweaks */
 @media (max-width: 480px) {
+    .app-container {
+        padding: 1vh 3vw;
+    }
+
     .header h1 {
-        font-size: 2.5rem;
-    }
-
-    .letter-cell {
-        font-size: 1.5rem;
-    }
-
-    .bingo-cell {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
 
     .bingo-card {
+        max-height: 65vh;
+        border-radius: 12px;
+        padding: 8px;
+    }
+
+    .letter-cell {
+        font-size: 1.4rem;
+    }
+
+    .bingo-cell {
+        font-size: 1.3rem;
+        border-radius: 6px;
+    }
+
+    .bingo-cell.free-space {
+        font-size: 0.8rem;
+    }
+}
+
+/* Small phones (e.g. iPhone SE) */
+@media (max-width: 380px) {
+    .header h1 {
+        font-size: 1.8rem;
+    }
+
+    .new-game-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .letter-cell {
+        font-size: 1.2rem;
+    }
+
+    .bingo-cell {
+        font-size: 1.1rem;
+    }
+
+    .bingo-card {
+        padding: 5px;
+        gap: 2px;
+    }
+
+    .bingo-grid {
+        gap: 3px;
+    }
+}
+
+/* Landscape mode for mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+    .app-container {
+        flex-direction: row;
+        align-items: center;
         padding: 10px;
+        gap: 20px;
+    }
+
+    .header {
+        text-align: left;
+        padding-bottom: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .header h1 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+
+    .bingo-card {
+        height: 90vh;
+        max-height: none;
+        width: auto;
+        aspect-ratio: 5/6;
+    }
+
+    .footer {
+        display: none;
+        /* Hide footer on short landscape screens to save space */
     }
 }
 
